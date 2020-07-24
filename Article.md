@@ -47,6 +47,10 @@ or after you call an initialization function.
 ![event loop](figs/event_loop.png)
 
 
+The source of everything in an event loop are the events. They can be of many
+types, but they are usually Input and Output in a data channel (A socket,
+a file descriptor, a device).
+
 # States of a promise
 
 The following diagram extracted from @ParkerJavaScriptpromises2015 shows how
@@ -169,6 +173,5 @@ a service, and acting mostly as a script. Since Mojolicous is by itself an web
 server framework for web applications. We can also, include it to show to the
 web world our user data, and have an efficient non-blocking web application.
 
-```
 
 # Bibliography
