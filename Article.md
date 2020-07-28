@@ -184,13 +184,14 @@ module itself is part of the framework, and we can take advantage of that.
 
 The code bellow creates an http service running using the default http daemon
 code shipped with Mojolicious `Mojo::Server`. The only route for this web
-application is the `/user` that leads to run `User->get_profile_p` method on a
-new user everytime. Of course that a real application would fetch data with
-some key associated. But in our simple world we create a random user (takes
+application is the `/user` that leads to run `User->get_profile_p` method on
+a new user every time. Of course, that a real application would fetch data with
+some key associated. But, in our simple world we create a random user (takes
 1~3 secs) and then just send to client in this network operation. As we
-designed ground up non-blocking this will now run in milliseconds on server
-to get ready to respond, although it won't send data until the it completes,
-it will be ready to answer to another client.
+designed ground up non-blocking this will now run in milliseconds on server to
+get ready to respond, although it won't send data until the it completes, it
+will be ready to answer to another client, while waiting the data to be
+generated and send to any other previous request not fulfilled.
 
 ```perl
 use Mojolicious::Lite -async_await, -signatures;
