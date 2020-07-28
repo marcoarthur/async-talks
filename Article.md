@@ -166,12 +166,12 @@ Let's check now how a user would make use of this module.
   get_profile( $user )->wait;
 ```
 
-The code shows the pattern of use, since we have a `User` that operates async we
-use an async function to get us the user profile and print his name, or that
-dies if cannot take the profile. Not that this module is complete detached from
-a service, and acting mostly as a script. Since Mojolicous is by itself an web
-server framework for web applications. We can also, include it to show to the
-web world our user data, and have an efficient non-blocking web application.
+The code shows the pattern of use, we have a `User` and we use an `async`
+keyword to qualify the function `get_profile` that will query the user profile
+and print his name, or that dies if cannot take the profile. Note that this
+module is complete detached from a service, acting as a script.
 
+Mojolicous is a web server framework. We can also, include it to show to the
+web world our user data, and have an efficient non-blocking web application.
 
 # Bibliography
