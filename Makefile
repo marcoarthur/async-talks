@@ -1,7 +1,8 @@
 # Definitions
 MD_FILE=Article.md
 BIBLIOGRAPHY=default.bib
-PANDOC_OPTS= --biblatex --filter pandoc-citeproc --bibliography=$(BIBLIOGRAPHY) --toc -s
+PANDOC_FILTERS= --filter pandoc-citeproc
+PANDOC_OPTS= --biblatex $(PANDOC_FILTERS) --bibliography=$(BIBLIOGRAPHY) --toc -s
 TARGET=doc.html
 
 # Rules
@@ -16,4 +17,4 @@ doc.pdf: $(MD_FILE) $(BIBLIOGRAPHY)
 .PHONY: clean
 
 clean:
-	rm -rf *.html
+	rm -rf *.html *.pdf

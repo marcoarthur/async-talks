@@ -171,7 +171,43 @@ keyword to qualify the function `get_profile` that will query the user profile
 and print his name, or that dies if cannot take the profile. Note that this
 module is complete detached from a service, acting as a script.
 
-Mojolicous is a web server framework. We can also, include it to show to the
-web world our user data, and have an efficient non-blocking web application.
+## Building a service to user
+
+Block vs non-block takes important place when dealing with services, a http
+server for example. In this case asynchronous module shines, because the server
+is able to respond to a much higher number of clients, compared to a synchronous
+non thread one.
+
+Mojolicous is a web server framework, designed from ground up with asynchronous
+in mind. Actually, the [Mojo::Promise](https://metacpan.org/pod/Mojo::Promise)
+module itself is part of the framework, and we can take advantage of that.
+
+The code bellow creates an http service running using the default http daemon
+code shipped with Mojolicious `Mojo::Server`. The only route for this web
+application is the `/user` that leads to run `User->get_profile_p` method on a
+new user everytime. Of course that a real application would fetch data with
+some key associated. But in our simple world we create a random user (takes
+1~3 secs) and then just send to client in this network operation. As we
+designed ground up non-blocking this will now run in milliseconds on server
+to get ready to respond, although it won't send data until the it completes,
+it will be ready to answer to another client.
+
+```perl
+use Mojolicious::Lite -async_await, -signatures;
+use Syntax::Keyword::Try;
+use User;
+
+get '/user' => async sub ($c) {
+    $c->render_later;
+    try {
+        my $user = await User->new->get_profile_p;
+        $c->render( json => $user );
+    } catch {
+        $c->reply->exception("Oh no: $@");
+    }
+};
+
+app->start;
+```
 
 # Bibliography
