@@ -211,4 +211,12 @@ get '/user' => async sub ($c) {
 app->start;
 ```
 
+## And testing ?
+
+How to test an asynchronous code ? Test is hard skill, even for simple
+synchronous code, because of program path combinatoric explosion, that makes
+hard to create test cases for all paths and even harder to understand if
+the program fill the specification. So, one expects that asynchronous code
+adds even more complexity to an already daunting difficult task. That is true
+
 # Bibliography
