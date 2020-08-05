@@ -3,7 +3,6 @@ use Test::More;
 use Test::Mojo;
 use Mojo::File 'path';
 
-
 my $script = path('.', 'lib', 'Web', 'user.pl');
 my $t = Test::Mojo->new($script);
 

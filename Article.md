@@ -138,7 +138,7 @@ package User;
 
 The code above create a package `User` that has the method `get_profile_p` that
 returns a promise. We simulate that module to behave like a real service it
-takes sometime to complete operation in this case *get the user profile*. This
+takes some time to complete operation in this case *get the user profile*. This
 means that we write this method to return not a value but a **promise**, where
 the caller could later attach its callback to handle the value.
 
